@@ -1,0 +1,184 @@
+/*
+  Synthwave Theme Variables
+  Easily adjust these for color and style changes
+*/
+:root {
+  --color-bg: #1a093e;
+  --color-primary: #ff3cac;
+  --color-secondary: #784ba0;
+  --color-accent: #2b86c5;
+  --color-text: #f8f8f2;
+  --color-card-bg: #231942;
+  --color-footer-bg: #12002f;
+  --color-modal-bg: rgba(26,9,62,0.95);
+  --border-radius: 1.2rem;
+  --shadow: 0 4px 24px 0 rgba(255,60,172,0.15);
+  --transition: 0.2s cubic-bezier(.4,0,.2,1);
+}
+
+body {
+  background: url('../img/background.png') no-repeat center center fixed;
+  background-size: cover;
+  color: var(--color-text);
+  font-family: 'Orbitron', 'Montserrat', 'Arial', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  padding: 1.5rem 0;
+  text-align: center;
+  letter-spacing: 0.1em;
+  font-size: 2.5rem;
+  font-weight: bold;
+  box-shadow: var(--shadow);
+  text-shadow: 0 2px 16px var(--color-accent);
+}
+
+main {
+  flex: 1;
+  padding: 2rem 1rem 3rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .projects {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .projects {
+    grid-template-columns: 1fr;
+  }
+}
+
+.project-card {
+  background: var(--color-card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.project-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px 0 var(--color-primary);
+}
+.project-card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  background: #000;
+}
+.project-card-title {
+  padding: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: linear-gradient(90deg, var(--color-card-bg), var(--color-accent) 80%);
+}
+
+footer {
+  background: var(--color-footer-bg);
+  color: var(--color-text);
+  text-align: center;
+  padding: 1.2rem 0 1rem 0;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  box-shadow: 0 -2px 16px 0 var(--color-accent);
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: var(--color-modal-bg);
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s;
+}
+.modal.active {
+  display: flex;
+}
+.modal-content {
+  background: var(--color-card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  max-width: 98vw;
+  max-height: 98vh;
+  width: 900px;
+  padding: 2.5rem 2rem 2rem 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  font-size: 2rem;
+  color: var(--color-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition);
+}
+.modal-close:hover {
+  color: var(--color-accent);
+}
+.carousel {
+  width: 100%;
+  max-width: 850px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.carousel img {
+  width: 100%;
+  max-height: 600px;
+  object-fit: contain;
+  border-radius: 0.7rem;
+  background: #000;
+}
+.carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0.5rem 0 0.7rem 0;
+}
+.carousel-controls button {
+  background: var(--color-primary);
+  color: var(--color-text);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.4rem 1.2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.carousel-controls button:hover {
+  background: var(--color-accent);
+}
+.modal-description {
+  color: var(--color-text);
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}

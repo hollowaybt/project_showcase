@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funkyjive 3D - Digital Game Assets</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    Funkyjive 3D
+    <div class="tagline" style="font-family: 'Montserrat', sans-serif; font-size: 1.2rem; color: #aaa; margin-top: 0.3em;">
+      3D Game Assets & Resources
+    </div>
+  </header>
+  <main>
+    <section class="projects">
+      <div class="project-card" data-project="1">
+        <img src="img/project_synthwave/project_synthwave.png" alt="Synthwave Spaceships Cover">
+        <div class="project-card-title">Synthwave Environment</div>
+      </div>
+      <div class="project-card" data-project="2">
+        <img src="img/project_hex_cave/project_hex_cave.jpg" alt="Hexagon Cave Environment Cover">
+        <div class="project-card-title">Hexagon Cave Environment</div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    &copy; 2026 Funkyjive 3D. All rights reserved.
+  </footer>
+
+  <div class="modal" id="project-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <div class="carousel">
+        <img id="carousel-img" src="" alt="Project Image">
+        <div class="carousel-controls">
+          <button id="carousel-prev">&#8592; Prev</button>
+          <button id="carousel-next">Next &#8594;</button>
+        </div>
+      </div>
+      <div class="modal-description" id="modal-description"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
