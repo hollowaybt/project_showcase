@@ -38,12 +38,10 @@
   <div class="modal" id="project-modal">
     <div class="modal-content">
       <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
-      <div class="carousel">
+      <div class="carousel" role="region" aria-label="Image carousel">
+        <button class="carousel-arrow left" id="carousel-prev" aria-label="Previous image">‹</button>
         <img id="carousel-img" src="" alt="Project Image">
-        <div class="carousel-controls">
-          <button id="carousel-prev">&#8592; Prev</button>
-          <button id="carousel-next">Next &#8594;</button>
-        </div>
+        <button class="carousel-arrow right" id="carousel-next" aria-label="Next image">›</button>
       </div>
       <div class="modal-description" id="modal-description"></div>
     </div>

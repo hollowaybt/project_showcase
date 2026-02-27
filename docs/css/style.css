@@ -14,6 +14,11 @@
   --border-radius: 1.2rem;
   --shadow: 0 4px 24px 0 rgba(255,60,172,0.15);
   --transition: 0.2s cubic-bezier(.4,0,.2,1);
+  --modal-inner-gap: 3rem;
+  --carousel-arrow-size: 3.6rem;
+  --carousel-arrow-outside-gap: 0.5rem;
+
+}
 
 body {
   background: var(--color-bg);
@@ -217,19 +222,24 @@ body {
   background: var(--color-card-bg);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  max-width: 98vw;
-  max-height: 98vh;
-  width: 900px;
-  padding: 2.5rem 2rem 2rem 2rem;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 960px;
+  height: auto;
+  min-width: 320px;
+  min-height: 220px;
+  padding: var(--modal-inner-gap);
+  box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  justify-content: flex-start;
 }
 
 /* Synthwave Modal Theme (default) */
 .modal-content.synthwave {
-  background: var(--color-card-bg);
+  background: linear-gradient(135deg, #64007c 0%, #83006f 100%);
   color: var(--color-text);
   font-family: 'Orbitron', 'Montserrat', 'Arial', sans-serif;
   box-shadow: 0 4px 24px 0 rgba(255,60,172,0.25);
@@ -272,11 +282,10 @@ body {
 .modal-content.cave .modal-description {
   color: #e2c290;
 }
-}
 .modal-close {
   position: absolute;
-  top: 1rem;
-  right: 1.2rem;
+  top: var(--modal-inner-gap);
+  right: var(--modal-inner-gap);
   font-size: 2rem;
   color: var(--color-primary);
   background: none;
@@ -289,19 +298,57 @@ body {
 }
 .carousel {
   width: 100%;
-  max-width: 850px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1rem;
+  max-width: 100%;
+  position: relative;
+  display: block;
+  margin: 0 0 0 0;
+  padding: 0;
 }
 .carousel img {
   width: 100%;
-  max-height: 600px;
-  object-fit: contain;
+  height: auto;
+  max-height: calc(80vh - (2 * var(--modal-inner-gap)));
+  object-fit: cover;
   border-radius: 0.7rem;
   background: #000;
+  display: block;
 }
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  /* nudge upwards slightly for better optical centering */
+  transform: translateY(-42%);
+  width: var(--carousel-arrow-size);
+  height: var(--carousel-arrow-size);
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.55);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: calc(var(--carousel-arrow-size) * 0.7);
+  z-index: 3;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.carousel-arrow.left { left: calc(var(--modal-inner-gap) - (var(--carousel-arrow-size) / 2)); }
+.carousel-arrow.right { right: calc(var(--modal-inner-gap) - (var(--carousel-arrow-size) / 2)); }
+
+.modal-close {
+  z-index: 12;
+  color: var(--color-text);
+  background: rgba(0,0,0,0.55);
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.4rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  /* place outside image near top-right modal corner */
+  top: calc(var(--modal-inner-gap) * 0.12);
+  right: calc(var(--modal-inner-gap) * 0.12);
+}
+
 .carousel-controls {
   display: flex;
   justify-content: space-between;
