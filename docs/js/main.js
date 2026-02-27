@@ -37,10 +37,19 @@ const carouselNext = document.getElementById('carousel-next');
 let currentProject = 0;
 let currentImage = 0;
 
+
 function openModal(projectIdx) {
   currentProject = projectIdx;
   currentImage = 0;
   updateModal();
+  // Theme switching for modal
+  const modalContent = modal.querySelector('.modal-content');
+  modalContent.classList.remove('synthwave', 'cave');
+  if (currentProject === 0) {
+    modalContent.classList.add('synthwave');
+  } else if (currentProject === 1) {
+    modalContent.classList.add('cave');
+  }
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 }

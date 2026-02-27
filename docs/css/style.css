@@ -3,22 +3,20 @@
   Easily adjust these for color and style changes
 */
 :root {
-  --color-bg: #1a093e;
-  --color-primary: #ff3cac;
-  --color-secondary: #784ba0;
-  --color-accent: #2b86c5;
-  --color-text: #f8f8f2;
-  --color-card-bg: #231942;
-  --color-footer-bg: #12002f;
-  --color-modal-bg: rgba(26,9,62,0.95);
+  --color-bg: #23272a;
+  --color-primary: #b0b3b8;
+  --color-secondary: #888b8e;
+  --color-accent: #44474a;
+  --color-text: #f1f1f1;
+  --color-card-bg: #2c2f33;
+  --color-footer-bg: #18191c;
+  --color-modal-bg: rgba(40, 40, 40, 0.92);
   --border-radius: 1.2rem;
   --shadow: 0 4px 24px 0 rgba(255,60,172,0.15);
   --transition: 0.2s cubic-bezier(.4,0,.2,1);
-}
 
 body {
-  background: url('../img/background.png') no-repeat center center fixed;
-  background-size: cover;
+  background: var(--color-bg);
   color: var(--color-text);
   font-family: 'Orbitron', 'Montserrat', 'Arial', sans-serif;
   margin: 0;
@@ -27,38 +25,115 @@ body {
   flex-direction: column;
 }
 
-header {
-  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-  padding: 1.5rem 0;
+
+/* --- New Theme Header --- */
+/* Match header style to footer, but keep header taller */
+.site-header {
+  background: linear-gradient(90deg, var(--color-footer-bg) 0%, var(--color-accent) 100%);
+  color: var(--color-text);
   text-align: center;
-  letter-spacing: 0.1em;
-  font-size: 2.5rem;
-  font-weight: bold;
-  box-shadow: var(--shadow);
-  text-shadow: 0 2px 16px var(--color-accent);
+  padding: 1.2rem 0 1rem 0; /* Reduced height */
+  font-size: 1.15rem;
+  letter-spacing: 0.07em;
+  box-shadow: 0 2px 16px 0 var(--color-accent);
+  position: relative;
+  z-index: 2;
+}
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.site-title {
+  font-family: 'Orbitron', 'Montserrat', 'Arial', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #fff;
+  text-shadow: 0 2px 24px var(--color-accent), 0 1px 0 #000;
+}
+.site-tagline {
+  font-family: 'Montserrat', 'Arial', sans-serif;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  letter-spacing: 0.08em;
+  opacity: 0.85;
 }
 
-main {
+
+/* --- Main Content Section --- */
+.site-main {
   flex: 1;
-  padding: 2rem 1rem 3rem 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  position: relative;
+  padding: 2.5rem 1rem 3.5rem 1rem;
+  width: 100vw;
+  margin: 0;
+  z-index: 1;
+  background: #f4f5f7;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Subtle 3D lines and nodes background */
+.background-lines-nodes {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: none;
+}
+.background-lines-nodes::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(120deg, rgba(43,134,197,0.08) 0 2px, transparent 2px 80px),
+    repeating-linear-gradient(60deg, rgba(255,60,172,0.07) 0 2px, transparent 2px 90px),
+    repeating-radial-gradient(circle at 20% 30%, rgba(120,75,160,0.10) 0 4px, transparent 4px 40px),
+    repeating-radial-gradient(circle at 80% 70%, rgba(43,134,197,0.10) 0 3px, transparent 3px 50px);
+  opacity: 0.7;
+  pointer-events: none;
+}
+.background-lines-nodes::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 60%, var(--color-accent) 0 1.5px, transparent 1.5px 100px),
+    radial-gradient(circle at 60% 20%, var(--color-primary) 0 2px, transparent 2px 120px),
+    radial-gradient(circle at 80% 80%, var(--color-secondary) 0 1.2px, transparent 1.2px 80px);
+  opacity: 0.18;
+  pointer-events: none;
 }
 
 .projects {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
+  justify-content: center;
 }
 
 @media (max-width: 900px) {
   .projects {
-    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    justify-content: center;
+  }
+  .project-card {
+    width: 45vw;
+    min-width: 220px;
+    max-width: 100%;
   }
 }
 @media (max-width: 600px) {
   .projects {
-    grid-template-columns: 1fr;
+    gap: 2rem;
+    justify-content: center;
+  }
+  .project-card {
+    width: 95vw;
+    min-width: 160px;
+    max-width: 100%;
   }
 }
 
@@ -72,6 +147,18 @@ main {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  width: 320px;
+  min-width: 280px;
+  max-width: 100%;
+  margin: 0;
+  flex: 0 1 320px;
+}
+.project-card[data-project="2"] {
+  /* Rocky/Cave theme overrides */
+  background: linear-gradient(135deg, #3a2c1a 60%, #6e5c3a 100%);
+  box-shadow: 0 4px 24px 0 rgba(80,60,30,0.25);
+  border-radius: 1.5rem 1.5rem 1.2rem 1.2rem;
+  font-family: 'Alfa Slab One', 'Rock Salt', 'Montserrat', serif;
 }
 .project-card:hover {
   transform: translateY(-8px) scale(1.03);
@@ -90,15 +177,26 @@ main {
   color: var(--color-primary);
   background: linear-gradient(90deg, var(--color-card-bg), var(--color-accent) 80%);
 }
+.project-card[data-project="2"] .project-card-title {
+  color: #e2c290;
+  background: linear-gradient(90deg, #4b3a1a 60%, #a88c5c 100%);
+  text-shadow: 1px 2px 0 #2d2210, 0 1px 8px #a88c5c;
+  font-family: 'Alfa Slab One', 'Rock Salt', 'Montserrat', serif;
+  letter-spacing: 0.04em;
+}
 
-footer {
-  background: var(--color-footer-bg);
+
+/* --- New Theme Footer --- */
+.site-footer {
+  background: linear-gradient(90deg, var(--color-footer-bg) 0%, var(--color-accent) 100%);
   color: var(--color-text);
   text-align: center;
-  padding: 1.2rem 0 1rem 0;
-  font-size: 1rem;
-  letter-spacing: 0.05em;
+  padding: 1.3rem 0 1.1rem 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.07em;
   box-shadow: 0 -2px 16px 0 var(--color-accent);
+  position: relative;
+  z-index: 2;
 }
 
 /* Modal Styles */
@@ -127,6 +225,53 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* Synthwave Modal Theme (default) */
+.modal-content.synthwave {
+  background: var(--color-card-bg);
+  color: var(--color-text);
+  font-family: 'Orbitron', 'Montserrat', 'Arial', sans-serif;
+  box-shadow: 0 4px 24px 0 rgba(255,60,172,0.25);
+}
+.modal-content.synthwave .modal-close {
+  color: var(--color-primary);
+}
+.modal-content.synthwave .carousel-controls button {
+  background: var(--color-primary);
+  color: var(--color-text);
+}
+.modal-content.synthwave .carousel-controls button:hover {
+  background: var(--color-accent);
+}
+.modal-content.synthwave .modal-description {
+  color: var(--color-text);
+}
+
+/* Cave Modal Theme */
+.modal-content.cave {
+  background: linear-gradient(135deg, #3a2c1a 60%, #6e5c3a 100%);
+  color: #e2c290;
+  font-family: 'Alfa Slab One', 'Rock Salt', 'Montserrat', serif;
+  box-shadow: 0 4px 32px 0 rgba(80,60,30,0.25);
+}
+.modal-content.cave .modal-close {
+  color: #e2c290;
+}
+.modal-content.cave .modal-close:hover {
+  color: #a88c5c;
+}
+.modal-content.cave .carousel-controls button {
+  background: #a88c5c;
+  color: #231942;
+}
+.modal-content.cave .carousel-controls button:hover {
+  background: #e2c290;
+  color: #3a2c1a;
+}
+.modal-content.cave .modal-description {
+  color: #e2c290;
+}
 }
 .modal-close {
   position: absolute;
