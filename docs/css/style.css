@@ -144,6 +144,8 @@ body {
 
 .project-card {
   background: var(--color-card-bg);
+  position: relative;
+  z-index: 2;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   overflow: hidden;
